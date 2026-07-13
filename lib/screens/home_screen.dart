@@ -43,7 +43,6 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
       body: ResponsiveLayout(
-        // Mobile Portrait: single vertical column (Form -> Divider -> List)
         mobilePortrait: users.isEmpty
             ? SingleChildScrollView(
                 child: Column(
@@ -80,12 +79,11 @@ class HomeScreen extends ConsumerWidget {
                 },
               ),
 
-        // Mobile Landscape: 2 columns (Left: Form, Right: Scrollable List)
         mobileLandscape: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 4, // 40% width
+              flex: 4,
               child: const SingleChildScrollView(
                 padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0),
                 child: UserForm(),
@@ -98,7 +96,7 @@ class HomeScreen extends ConsumerWidget {
               endIndent: 16,
             ),
             Expanded(
-              flex: 6, // 60% width
+              flex: 6,
               child: users.isEmpty
                   ? _buildEmptyState()
                   : ListView.builder(
@@ -116,12 +114,11 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
 
-        // Tablet: 2 columns (Left: Form, Right: 2-column Grid of user items)
         tablet: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              width: 360, // Fixed width for form on tablets
+              width: 360,
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(16.0),
                 child: UserForm(),

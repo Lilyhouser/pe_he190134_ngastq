@@ -27,7 +27,6 @@ class _UserFormState extends ConsumerState<UserForm> {
     super.dispose();
   }
 
-  // Predefined list of avatar assets in the project template
   final List<String> _avatarAssets = const [
     'assets/default_avatar.jpg',
     'assets/avar1.jpg',
@@ -126,7 +125,6 @@ class _UserFormState extends ConsumerState<UserForm> {
   Widget build(BuildContext context) {
     final state = ref.watch(userProvider);
 
-    // Sync controllers if the selected/editing user changes from outside
     ref.listen<UserState>(userProvider, (previous, next) {
       if (next.editingUser != previous?.editingUser) {
         if (next.editingUser != null) {
@@ -155,7 +153,6 @@ class _UserFormState extends ConsumerState<UserForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Name Field
             const Text(
               'Họ và tên',
               style: TextStyle(
@@ -195,7 +192,6 @@ class _UserFormState extends ConsumerState<UserForm> {
             ),
             const SizedBox(height: 14),
 
-            // Email Field
             const Text(
               'Email',
               style: TextStyle(
@@ -236,7 +232,6 @@ class _UserFormState extends ConsumerState<UserForm> {
             ),
             const SizedBox(height: 14),
 
-            // Avatar Field
             const Text(
               'Avatar',
               style: TextStyle(
@@ -307,7 +302,6 @@ class _UserFormState extends ConsumerState<UserForm> {
             ],
             const SizedBox(height: 20),
 
-            // Action Button
             SizedBox(
               width: double.infinity,
               height: 48,

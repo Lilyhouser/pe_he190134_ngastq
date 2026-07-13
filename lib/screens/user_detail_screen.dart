@@ -4,10 +4,7 @@ import '../models/user.dart';
 class UserDetailScreen extends StatelessWidget {
   final User user;
 
-  const UserDetailScreen({
-    super.key,
-    required this.user,
-  });
+  const UserDetailScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +36,6 @@ class UserDetailScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
 
-              // Large Circular Avatar (centered horizontally)
               Center(
                 child: Container(
                   decoration: BoxDecoration(
@@ -54,20 +50,18 @@ class UserDetailScreen extends StatelessWidget {
                     ],
                   ),
                   child: CircleAvatar(
-                    radius: 120, // Large avatar size
+                    radius: 120,
                     backgroundImage: AssetImage(user.avatar),
                   ),
                 ),
               ),
               const SizedBox(height: 50),
 
-              // Details section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ID Field
                     const Text(
                       'ID',
                       style: TextStyle(
@@ -88,7 +82,6 @@ class UserDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
-                    // Fullname Field
                     const Text(
                       'Fullname',
                       style: TextStyle(
@@ -109,7 +102,6 @@ class UserDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
-                    // Email Field
                     const Text(
                       'Email',
                       style: TextStyle(

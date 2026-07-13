@@ -6,18 +6,14 @@ class UserState {
   final List<User> users;
   final bool isLoading;
   final String? error;
-  
-  // Validation errors
+
   final String? fullNameError;
   final String? emailError;
   final String? avatarError;
-
-  // Form fields
   final String fullName;
   final String email;
   final String avatar;
 
-  // Editing state
   final User? editingUser;
 
   UserState({
@@ -50,7 +46,9 @@ class UserState {
       users: users ?? this.users,
       isLoading: isLoading ?? this.isLoading,
       error: error != null ? error() : this.error,
-      fullNameError: fullNameError != null ? fullNameError() : this.fullNameError,
+      fullNameError: fullNameError != null
+          ? fullNameError()
+          : this.fullNameError,
       emailError: emailError != null ? emailError() : this.emailError,
       avatarError: avatarError != null ? avatarError() : this.avatarError,
       fullName: fullName ?? this.fullName,
@@ -68,7 +66,6 @@ class UserNotifier extends StateNotifier<UserState> {
     loadUsers();
   }
 
-  // Regular expression for validating email
   final RegExp _emailRegExp = RegExp(
     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
   );
@@ -151,7 +148,6 @@ class UserNotifier extends StateNotifier<UserState> {
     state = state.copyWith(isLoading: true);
     try {
       if (state.editingUser == null) {
-        // Add new user
         final newUser = User(
           fullName: state.fullName.trim(),
           email: state.email.trim(),
@@ -159,7 +155,6 @@ class UserNotifier extends StateNotifier<UserState> {
         );
         await _dbHelper.insertUser(newUser);
       } else {
-        // Update existing user
         final updatedUser = state.editingUser!.copyWith(
           fullName: state.fullName.trim(),
           email: state.email.trim(),
@@ -180,7 +175,6 @@ class UserNotifier extends StateNotifier<UserState> {
     state = state.copyWith(isLoading: true);
     try {
       await _dbHelper.deleteUser(id);
-      // If the currently edited user is deleted, clear the form as well
       if (state.editingUser?.id == id) {
         clearForm();
       }
@@ -191,7 +185,6 @@ class UserNotifier extends StateNotifier<UserState> {
   }
 }
 
-// Provider definition
 final userProvider = StateNotifierProvider<UserNotifier, UserState>((ref) {
   return UserNotifier();
 });

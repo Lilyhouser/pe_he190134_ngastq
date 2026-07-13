@@ -17,7 +17,6 @@ class DatabaseHelper {
   }
 
   Future<Database> _initDB(String filePath) async {
-    // If running on desktop, initialize sqflite FFI
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       sqfliteFfiInit();
       databaseFactory = databaseFactoryFfi;
@@ -26,11 +25,7 @@ class DatabaseHelper {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _createDB,
-    );
+    return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
   Future _createDB(Database db, int version) async {
@@ -67,11 +62,7 @@ class DatabaseHelper {
 
   Future<int> deleteUser(int id) async {
     final db = await instance.database;
-    return await db.delete(
-      'users',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    return await db.delete('users', where: 'id = ?', whereArgs: [id]);
   }
 
   Future close() async {

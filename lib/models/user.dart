@@ -11,8 +11,6 @@ class User {
     required this.avatar,
   });
 
-  // Convert a User into a Map. The keys must correspond to the names of the
-  // columns in the database.
   Map<String, dynamic> toMap() {
     return {
       if (id != null) 'id': id,
@@ -22,7 +20,6 @@ class User {
     };
   }
 
-  // Convert a Map into a User.
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'] as int?,
@@ -32,12 +29,7 @@ class User {
     );
   }
 
-  User copyWith({
-    int? id,
-    String? fullName,
-    String? email,
-    String? avatar,
-  }) {
+  User copyWith({int? id, String? fullName, String? email, String? avatar}) {
     return User(
       id: id ?? this.id,
       fullName: fullName ?? this.fullName,

@@ -72,7 +72,6 @@ class UserItem extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Row(
           children: [
-            // Circular Avatar
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -85,7 +84,6 @@ class UserItem extends ConsumerWidget {
             ),
             const SizedBox(width: 16),
 
-            // User Info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,11 +109,9 @@ class UserItem extends ConsumerWidget {
               ),
             ),
 
-            // Action Buttons
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Edit button
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.black87),
                   onPressed: () {
@@ -123,7 +119,6 @@ class UserItem extends ConsumerWidget {
                   },
                   tooltip: 'Chỉnh sửa',
                 ),
-                // Delete button
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red.shade700),
                   onPressed: () => _showDeleteConfirmation(context, ref),
