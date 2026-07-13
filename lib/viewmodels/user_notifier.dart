@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user.dart';
-import '../services/database_helper.dart';
+import '../repositories/database_helper.dart';
 
 class UserState {
   final List<User> users;

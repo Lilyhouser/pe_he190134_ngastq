@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/user_notifier.dart';
-import 'responsive_layout.dart';
-import 'widgets/user_form.dart';
-import 'widgets/user_item.dart';
+import '../widgets/responsive_layout.dart';
+import '../widgets/user_form.dart';
+import '../widgets/user_item.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -49,7 +49,12 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   children: [
                     const UserForm(),
-                    const Divider(height: 24, thickness: 1, indent: 16, endIndent: 16),
+                    const Divider(
+                      height: 24,
+                      thickness: 1,
+                      indent: 16,
+                      endIndent: 16,
+                    ),
                     _buildEmptyState(),
                   ],
                 ),
@@ -60,7 +65,12 @@ class HomeScreen extends ConsumerWidget {
                   if (index == 0) {
                     return const UserForm();
                   } else if (index == 1) {
-                    return const Divider(height: 24, thickness: 1, indent: 16, endIndent: 16);
+                    return const Divider(
+                      height: 24,
+                      thickness: 1,
+                      indent: 16,
+                      endIndent: 16,
+                    );
                   }
                   final user = users[index - 2];
                   return Padding(
@@ -81,13 +91,22 @@ class HomeScreen extends ConsumerWidget {
                 child: UserForm(),
               ),
             ),
-            const VerticalDivider(width: 16, thickness: 1, indent: 16, endIndent: 16),
+            const VerticalDivider(
+              width: 16,
+              thickness: 1,
+              indent: 16,
+              endIndent: 16,
+            ),
             Expanded(
               flex: 6, // 60% width
               child: users.isEmpty
                   ? _buildEmptyState()
                   : ListView.builder(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, right: 8.0),
+                      padding: const EdgeInsets.only(
+                        top: 8.0,
+                        bottom: 8.0,
+                        right: 8.0,
+                      ),
                       itemCount: users.length,
                       itemBuilder: (context, index) {
                         return UserItem(user: users[index]);
@@ -108,18 +127,24 @@ class HomeScreen extends ConsumerWidget {
                 child: UserForm(),
               ),
             ),
-            const VerticalDivider(width: 1, thickness: 1, indent: 24, endIndent: 24),
+            const VerticalDivider(
+              width: 1,
+              thickness: 1,
+              indent: 24,
+              endIndent: 24,
+            ),
             Expanded(
               child: users.isEmpty
                   ? _buildEmptyState()
                   : GridView.builder(
                       padding: const EdgeInsets.all(16.0),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3.5,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                      ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 3.5,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
                       itemCount: users.length,
                       itemBuilder: (context, index) {
                         final user = users[index];
@@ -152,11 +177,7 @@ class HomeScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.group_outlined,
-              size: 72,
-              color: Colors.grey.shade300,
-            ),
+            Icon(Icons.group_outlined, size: 72, color: Colors.grey.shade300),
             const SizedBox(height: 16),
             Text(
               'Chưa có người dùng nào',
@@ -169,10 +190,7 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 8),
             Text(
               'Vui lòng nhập thông tin phía trên để thêm người dùng mới.',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey.shade400,
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
               textAlign: TextAlign.center,
             ),
           ],

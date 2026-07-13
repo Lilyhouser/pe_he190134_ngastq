@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/user.dart';
 import '../../viewmodels/user_notifier.dart';
-import '../user_detail_screen.dart';
+import '../screens/user_detail_screen.dart';
 
 class UserItem extends ConsumerWidget {
   final User user;
 
-  const UserItem({
-    super.key,
-    required this.user,
-  });
+  const UserItem({super.key, required this.user});
 
   void _showDeleteConfirmation(BuildContext context, WidgetRef ref) {
     showDialog(
@@ -20,10 +17,7 @@ class UserItem extends ConsumerWidget {
           backgroundColor: Colors.white,
           title: const Text(
             'Xác nhận xóa',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
           content: Text(
             'Bạn có chắc chắn muốn xóa người dùng "${user.fullName}" không?',
@@ -34,10 +28,7 @@ class UserItem extends ConsumerWidget {
               onPressed: () {
                 Navigator.of(dialogContext).pop();
               },
-              child: const Text(
-                'Hủy',
-                style: TextStyle(color: Colors.grey),
-              ),
+              child: const Text('Hủy', style: TextStyle(color: Colors.grey)),
             ),
             TextButton(
               onPressed: () async {
@@ -73,9 +64,7 @@ class UserItem extends ConsumerWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => UserDetailScreen(user: user),
-          ),
+          MaterialPageRoute(builder: (context) => UserDetailScreen(user: user)),
         );
       },
       borderRadius: BorderRadius.circular(8),
@@ -87,10 +76,7 @@ class UserItem extends ConsumerWidget {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.grey.shade200,
-                  width: 1,
-                ),
+                border: Border.all(color: Colors.grey.shade200, width: 1),
               ),
               child: CircleAvatar(
                 radius: 28,
@@ -117,10 +103,7 @@ class UserItem extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     user.email,
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
