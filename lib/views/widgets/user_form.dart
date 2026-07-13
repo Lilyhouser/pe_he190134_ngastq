@@ -136,6 +136,11 @@ class _UserFormState extends ConsumerState<UserForm> {
           _nameController.clear();
           _emailController.clear();
         }
+      } else if (next.fullName.isEmpty &&
+          next.email.isEmpty &&
+          next.editingUser == null) {
+        _nameController.clear();
+        _emailController.clear();
       }
     });
 

@@ -74,3 +74,7 @@ Dưới đây là chi tiết các thay đổi đã được thực hiện để 
 - **Sửa lỗi copyWith không xóa được các thông báo lỗi (Error Messages)**: 
   - *Vấn đề*: Trong lớp `UserState`, phương thức `copyWith` trước đó sử dụng biểu thức `fullNameError ?? this.fullNameError`. Khi các trường đã nhập đúng và lỗi trở về `null`, lệnh `state.copyWith(fullNameError: null)` sẽ giữ nguyên lỗi cũ do toán tử `??` bỏ qua giá trị `null` được truyền vào.
   - *Giải pháp*: Cập nhật tham số của phương thức `copyWith` nhận các hàm callback dạng `String? Function()?` để phân biệt rõ ràng giữa việc "không cập nhật" và "cập nhật giá trị thành null". Thay đổi toàn bộ các hàm cập nhật trạng thái tương ứng trong `UserNotifier` để sửa lỗi này triệt để. Nút `ADD USER` / `EDIT USER` hiện hoạt động hoàn toàn chính xác.
+
+- **Sửa lỗi không xóa giá trị trong các ô nhập liệu sau khi thêm mới thành công**:
+  - *Vấn đề*: Khi thêm người dùng thành công, biểu mẫu gọi `clearForm()` đặt các giá trị trong `UserState` về `''` (rỗng). Tuy nhiên, hàm `ref.listen` trong `UserForm` chỉ lắng nghe khi trạng thái `editingUser` thay đổi. Vì khi thêm người dùng mới, `editingUser` luôn là `null` trước và sau khi lưu, sự kiện thay đổi này không kích hoạt nên `TextEditingController` không được dọn dẹp.
+  - *Giải pháp*: Bổ sung thêm điều kiện trong hàm `ref.listen` để kiểm tra khi dữ liệu nhập trong State đã được đặt lại về rỗng (`next.fullName.isEmpty && next.email.isEmpty && next.editingUser == null`), nếu đúng sẽ tiến hành gọi `.clear()` trên các `TextEditingController` để làm rỗng ô nhập liệu trên giao diện.
